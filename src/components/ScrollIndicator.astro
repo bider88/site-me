@@ -1,0 +1,47 @@
+---
+// Scroll indicator component for smooth transitions between sections
+---
+
+<div class="relative w-full overflow-hidden">
+  <!-- Gradient background for smooth transition -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-white via-zinc-50/50 to-zinc-100/30 dark:from-zinc-950 dark:via-zinc-900/50 dark:to-zinc-900/30"
+  >
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="relative flex w-full justify-center py-16">
+    <button
+      id="scroll-indicator"
+      class="animate-bounce text-zinc-400 dark:text-zinc-600 cursor-pointer transition-colors hover:text-indigo-500 dark:hover:text-indigo-400"
+      aria-label="Scroll to skills section"
+    >
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const scrollIndicator = document.getElementById("scroll-indicator");
+
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener("click", () => {
+      const skillsSection = document.getElementById("skills");
+      if (skillsSection) {
+        skillsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+</script>

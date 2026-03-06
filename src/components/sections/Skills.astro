@@ -1,0 +1,57 @@
+---
+import { skills } from "../../data/skills";
+import SkillCard from "../skills/SkillCard.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import {
+  Code2,
+  Atom,
+  Palette,
+  Hexagon,
+  GitBranch,
+  Triangle,
+  Component,
+  Kanban,
+} from "lucide-astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const iconMap = {
+  triangle: Triangle,
+  "code-2": Code2,
+  atom: Atom,
+  stenciljs: Component,
+  jira: Kanban,
+  palette: Palette,
+  hexagon: Hexagon,
+  "git-branch": GitBranch,
+};
+---
+
+<section id="skills" class="py-24 px-6 bg-zinc-50/50 dark:bg-zinc-900/50">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold text-zinc-900 dark:text-white">
+        {t("skills.title")}
+      </h2>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-400">
+        {t("skills.desc")}
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
+      {
+        skills.map((skill) => {
+          const IconComponent = iconMap[skill.icon as keyof typeof iconMap];
+          return (
+            <SkillCard name={skill.name}>
+              <IconComponent slot="icon" size={20} />
+            </SkillCard>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

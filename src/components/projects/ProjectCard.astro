@@ -1,0 +1,32 @@
+---
+const { project, lang } = Astro.props;
+---
+
+<div
+  class="group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-all hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+>
+  <div class="aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+    <img
+      src={project.image}
+      alt={project.title}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  </div>
+  <div class="p-6">
+    <div class="flex flex-wrap gap-2 mb-4">
+      {
+        project.tags.map((tag: string) => (
+          <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">
+      {project.title}
+    </h3>
+    <p class="mt-2 text-zinc-600 dark:text-zinc-400 text-sm">
+      {project.description[lang]}
+    </p>
+  </div>
+</div>
