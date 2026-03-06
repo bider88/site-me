@@ -1,5 +1,8 @@
 ---
 import "../styles/tailwind.css";
+import Nav from "../components/Nav.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import LanguagePicker from "../components/LanguagePicker.astro";
 
 interface Props {
   title: string;
@@ -35,6 +38,15 @@ const { title, description, lang } = Astro.props;
   <body
     class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300"
   >
-    <slot />
+    <header class="max-w-7xl mx-auto flex justify-between items-center p-6">
+      <Nav />
+      <div class="flex items-center gap-3">
+        <LanguagePicker />
+        <ThemeToggle />
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
   </body>
 </html>

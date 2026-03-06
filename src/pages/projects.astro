@@ -1,17 +1,19 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectCard from "../../components/projects/ProjectCard.astro";
-import { projects } from "../../data/projects";
-import { getLangFromUrl } from "../../i18n/utils";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/projects/ProjectCard.astro";
+import { projects } from "../data/projects";
+import { getLangFromUrl } from "../i18n/utils";
 import { ExternalLink } from "lucide-astro";
 
 const lang = getLangFromUrl(Astro.url);
 ---
 
 <BaseLayout
-  title="Proyectos | Mi Portfolio"
-  description="Proyectos destacados y trabajos recientes"
-  lang="es"
+  title={lang === "es" ? "Proyectos | Mi Portfolio" : "Projects | My Portfolio"}
+  description={lang === "es"
+    ? "Proyectos destacados y trabajos recientes"
+    : "Featured projects and recent works"}
+  lang={lang}
 >
   <section id="projects" class="py-24 px-6">
     <div class="max-w-7xl mx-auto">
@@ -22,17 +24,21 @@ const lang = getLangFromUrl(Astro.url);
           <h2
             class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl"
           >
-            Proyectos Destacados
+            {lang === "es" ? "Proyectos Destacados" : "Featured Projects"}
           </h2>
           <p class="mt-4 max-w-2xl text-zinc-600 dark:text-zinc-400">
-            Una selección de mis trabajos más recientes y retos técnicos.
+            {
+              lang === "es"
+                ? "Una selección de mis trabajos más recientes y retos técnicos."
+                : "A selection of my most recent works and technical challenges."
+            }
           </p>
         </div>
         <a
           href="https://github.com"
           class="text-sm font-medium text-indigo-500 hover:text-indigo-400 flex items-center gap-1"
         >
-          Ver todo en GitHub
+          {lang === "es" ? "Ver todo en GitHub" : "View all on GitHub"}
           <ExternalLink size={14} />
         </a>
       </div>

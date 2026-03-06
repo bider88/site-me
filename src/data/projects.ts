@@ -2,8 +2,8 @@ export interface Project {
   title: string;
   description: { es: string; en: string };
   tags: string[];
-  link?: string;
-  github?: string;
+  demo?: string;
+  repo?: string;
   image: string;
 }
 
@@ -16,6 +16,8 @@ export const projects: Project[] = [
     },
     tags: ["React", "Vite", "Firebase", "Tailwind"],
     image: "/projects/comandify.webp",
+    demo: "https://comandify.app",
+    repo: "https://github.com/bider88/comandify",
   },
   {
     title: "E-commerce",
@@ -25,5 +27,7 @@ export const projects: Project[] = [
     },
     tags: ["React", "Vite", "Firebase", "Tailwind"],
     image: "/projects/ecommerce.webp",
+    demo: "https://ecommerce.vercel.app",
+    repo: "https://github.com/bider88/ecommerce",
   },
 ];

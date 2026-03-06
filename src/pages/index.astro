@@ -1,9 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
-import LanguagePicker from "../components/LanguagePicker.astro";
 import Skills from "../components/sections/Skills.astro";
 import ScrollIndicator from "../components/ScrollIndicator.astro";
 ---
@@ -13,16 +10,7 @@ import ScrollIndicator from "../components/ScrollIndicator.astro";
   description="Welcome to my professional site"
   lang="en"
 >
-  <header class="max-w-7xl mx-auto flex justify-between items-center p-6">
-    <Nav />
-    <div class="flex items-center gap-3">
-      <LanguagePicker />
-      <ThemeToggle />
-    </div>
-  </header>
-  <main>
-    <Hero />
-    <ScrollIndicator />
-    <Skills />
-  </main>
+  <Hero />
+  <ScrollIndicator />
+  <Skills />
 </BaseLayout>

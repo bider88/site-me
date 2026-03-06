@@ -1,31 +1,67 @@
 ---
+import { Github, ExternalLink } from "lucide-astro";
 const { project, lang } = Astro.props;
 ---
 
 <div
-  class="group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-all hover:shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+  class="group relative flex flex-col rounded-3xl border border-zinc-200 bg-white/50 p-2 transition-all hover:border-indigo-500/50 hover:shadow-2xl dark:border-zinc-800 dark:bg-zinc-900/50"
 >
-  <div class="aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+  <div
+    class="overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800 aspect-video relative"
+  >
     <img
       src={project.image}
       alt={project.title}
       class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
     />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100 flex items-end p-6"
+    >
+      <div class="flex gap-3">
+        {
+          project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              class="p-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-colors"
+            >
+              <Github size={20} />
+            </a>
+          )
+        }
+        {
+          project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              class="p-2 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 transition-colors"
+            >
+              <ExternalLink size={20} />
+            </a>
+          )
+        }
+      </div>
+    </div>
   </div>
-  <div class="p-6">
-    <div class="flex flex-wrap gap-2 mb-4">
+
+  <div class="p-5">
+    <div class="flex flex-wrap gap-2 mb-3">
       {
         project.tags.map((tag: string) => (
-          <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+          <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 rounded-full">
             {tag}
           </span>
         ))
       }
     </div>
-    <h3 class="text-xl font-bold text-zinc-900 dark:text-white">
+    <h3
+      class="text-xl font-bold text-zinc-900 dark:text-white group-hover:text-indigo-500 transition-colors"
+    >
       {project.title}
     </h3>
-    <p class="mt-2 text-zinc-600 dark:text-zinc-400 text-sm">
+    <p
+      class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2"
+    >
       {project.description[lang]}
     </p>
   </div>
