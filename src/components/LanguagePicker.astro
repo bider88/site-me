@@ -1,0 +1,31 @@
+---
+import { languages } from "../i18n/ui";
+import { getLangFromUrl } from "../i18n/utils";
+import { Globe } from "lucide-astro";
+
+const lang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+
+// Determine the alternate path
+const getAlternatePath = () => {
+  if (lang === "en") {
+    // If we are in English (without prefix), add /es/
+    return `/es${currentPath}`;
+  } else {
+    // If we are in Spanish (/es/...), remove the prefix
+    return currentPath.replace(/^\/es/, "") || "/";
+  }
+};
+
+const alternatePath = getAlternatePath();
+const alternateLang = lang === "en" ? "es" : "en";
+---
+
+<a
+  href={alternatePath}
+  class="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+  aria-label={`Switch to ${languages[alternateLang]}`}
+>
+  <Globe size={16} />
+  <span>{languages[alternateLang]}</span>
+</a>

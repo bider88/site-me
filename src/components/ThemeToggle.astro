@@ -1,0 +1,41 @@
+---
+import { Sun, Moon } from "lucide-astro";
+---
+
+<button
+  id="theme-toggle"
+  class="relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-900 transition-colors hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900 cursor-pointer"
+  aria-label="Switch theme"
+>
+  <div class="sun-icon block dark:hidden">
+    <Sun size={20} />
+  </div>
+  <div class="moon-icon hidden dark:block">
+    <Moon size={20} />
+  </div>
+</button>
+
+<script>
+  const setupThemeToggle = () => {
+    const toggle = document.getElementById("theme-toggle");
+
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        const element = document.documentElement;
+        const isDark = element.classList.contains("dark");
+
+        // Toggle the class on the HTML element
+        element.classList.toggle("dark", !isDark);
+
+        // Save the preference
+        localStorage.setItem("theme", !isDark ? "dark" : "light");
+      });
+    }
+  };
+
+  // Execute within the initial load
+  setupThemeToggle();
+
+  // For compatibility with Astro's page transitions (View Transitions)
+  document.addEventListener("astro:after-swap", setupThemeToggle);
+</script>

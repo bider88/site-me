@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Hero from "../../components/Hero.astro";
+import ThemeToggle from "../../components/ThemeToggle.astro";
+import LanguagePicker from "../../components/LanguagePicker.astro";
+---
+
+<BaseLayout
+  title="Mi Portfolio"
+  description="Bienvenido a mi sitio profesional"
+  lang="es"
+>
+  <header class="max-w-7xl mx-auto flex justify-between items-center p-6">
+    <Nav />
+    <div class="flex items-center gap-3">
+      <LanguagePicker />
+      <ThemeToggle />
+    </div>
+  </header>
+  <main>
+    <Hero />
+  </main>
+</BaseLayout>

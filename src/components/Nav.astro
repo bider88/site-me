@@ -1,0 +1,24 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Build paths based on language (en has no prefix, es has /es prefix)
+const basePath = lang === "en" ? "" : `/${lang}`;
+---
+
+<nav class="flex gap-4 p-4 bg-zinc-100 dark:bg-zinc-900 rounded-lg">
+  <a
+    href={`${basePath}/`}
+    class="hover:text-indigo-500 font-medium transition-colors"
+  >
+    {t("nav.home")}
+  </a>
+  <a
+    href={`${basePath}/projects`}
+    class="hover:text-indigo-500 font-medium transition-colors"
+  >
+    {t("nav.projects")}
+  </a>
+</nav>

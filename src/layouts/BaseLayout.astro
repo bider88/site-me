@@ -1,0 +1,40 @@
+---
+import "../styles/tailwind.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: "es" | "en";
+}
+
+const { title, description, lang } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <script is:inline>
+      // Script para evitar el "flash" de color al cargar
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      })();
+      document.documentElement.classList.toggle("dark", theme === "dark");
+    </script>
+  </head>
+  <body
+    class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300"
+  >
+    <slot />
+  </body>
+</html>
