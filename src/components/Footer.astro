@@ -1,0 +1,126 @@
+---
+import { Github, Linkedin, Mail, Copy, Check } from "lucide-astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+interface Props {
+  name?: string;
+  email?: string;
+  github?: string;
+  linkedin?: string;
+}
+
+const {
+  name = "Irving Didier Sarmiento De La Cruz",
+  email = "irvingdidier.sarmiento@gmail.com",
+  github = "https://github.com/bider88",
+  linkedin = "https://www.linkedin.com/in/irving-didier-sarmiento2929/",
+} = Astro.props;
+---
+
+<footer class="border-t border-zinc-200 dark:border-zinc-800 py-12 px-6">
+  <div
+    class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"
+  >
+    <div>
+      <p class="text-zinc-900 dark:text-white font-bold text-lg">{name}</p>
+      <p class="text-zinc-500 dark:text-zinc-400 text-sm mt-1">
+        {
+          lang === "es"
+            ? "Especialista UI/UX & Frontend Developer"
+            : "UI/UX Specialist & Frontend Developer"
+        }
+      </p>
+      <p
+        class="text-emerald-600 dark:text-emerald-400 text-sm mt-2 flex items-center gap-2"
+      >
+        <span class="relative flex h-2 w-2">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+          ></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+          ></span>
+        </span>
+        {
+          lang === "es"
+            ? "Disponible para nuevos proyectos"
+            : "Available for work"
+        }
+      </p>
+    </div>
+
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex gap-6">
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-400 hover:text-indigo-500 transition-colors"
+          aria-label="GitHub"
+        >
+          <Github size={20} />
+        </a>
+        <a
+          href={linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-400 hover:text-indigo-500 transition-colors"
+          aria-label="LinkedIn"
+        >
+          <Linkedin size={20} />
+        </a>
+        <a
+          href={`mailto:${email}`}
+          class="text-zinc-400 hover:text-indigo-500 transition-colors"
+          aria-label="Email"
+        >
+          <Mail size={20} />
+        </a>
+      </div>
+
+      <button
+        id="copy-email"
+        data-email={email}
+        class="group flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500 transition-all cursor-pointer"
+      >
+        <span id="email-text">{email}</span>
+        <Copy size={14} class="copy-icon" />
+        <Check size={14} class="check-icon hidden" />
+      </button>
+    </div>
+
+    <p class="text-zinc-400 text-xs text-center md:text-right">
+      © {new Date().getFullYear()} — {name}<br />
+      {lang === "es" ? "Hecho con" : "Built with"} Astro & TypeScript
+    </p>
+  </div>
+</footer>
+
+<script>
+  const copyButton = document.getElementById("copy-email");
+
+  if (copyButton) {
+    copyButton.addEventListener("click", async () => {
+      const email = copyButton.getAttribute("data-email");
+      const copyIcon = copyButton.querySelector(".copy-icon");
+      const checkIcon = copyButton.querySelector(".check-icon");
+
+      if (email) {
+        try {
+          await navigator.clipboard.writeText(email);
+
+          copyIcon?.classList.add("hidden");
+          checkIcon?.classList.remove("hidden");
+
+          setTimeout(() => {
+            copyIcon?.classList.remove("hidden");
+            checkIcon?.classList.add("hidden");
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy email:", err);
+        }
+      }
+    });
+  }
+</script>
