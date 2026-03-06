@@ -37,7 +37,7 @@ const { title, description, lang } = Astro.props;
     </script>
   </head>
   <body
-    class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300"
+    class="bg-dot-pattern bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300"
   >
     <header class="max-w-7xl mx-auto flex justify-between items-center p-6">
       <Nav />
@@ -52,3 +52,23 @@ const { title, description, lang } = Astro.props;
     <Footer />
   </body>
 </html>
+
+<style is:global>
+  .bg-dot-pattern {
+    position: relative;
+  }
+
+  .bg-dot-pattern::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.6;
+  }
+
+  .dark .bg-dot-pattern::before {
+    background-image: radial-gradient(#1f2937 1px, transparent 1px);
+  }
+</style>

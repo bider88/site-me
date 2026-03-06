@@ -9,11 +9,24 @@ export interface Experience {
 export const experience: Experience[] = [
   {
     role: {
+      es: "Web UI developer",
+      en: "Web UI developer",
+    },
+    company: "Globant",
+    period: "2022 - Current",
+    description: {
+      es: "He trabajando dando soporte a aplicaciones ya establecidas, creando nuevas aplicaciones y mejorando el código existente.",
+      en: "I have been working supporting established applications, creating new applications and improving existing code.",
+    },
+    current: true,
+  },
+  {
+    role: {
       es: "Fundador / Lead Developer",
       en: "Founder / Lead Developer",
     },
     company: "Comandify",
-    period: "2023 - Presente",
+    period: "2023 - Current",
     description: {
       es: "Lideré el desarrollo completo de una plataforma SaaS para gestión de restaurantes, desde la arquitectura hasta el despliegue. Implementé soluciones en tiempo real con Firebase y creé una interfaz intuitiva con React y Tailwind CSS.",
       en: "Led the complete development of a SaaS platform for restaurant management, from architecture to deployment. Implemented real-time solutions with Firebase and created an intuitive interface with React and Tailwind CSS.",
